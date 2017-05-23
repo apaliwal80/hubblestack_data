@@ -1,0 +1,30 @@
+# NOTE: This CIS Profile only includes Level 1 Scored Items for Windows 2012
+# NOTE: Within this file, there are a few sections that should be tailored to your
+#       organization's specific policy.  Search for '# NOTE: ' comments throughout the file
+# NOTE: The value_types are as follows:
+#         1) more = more than the number located in match_output.  *Must be a number*
+#         2) less = less than the number located in match_output.  *Must be a number*
+#         3) equal = equal to the item located in match_output.  *Does not need to be a number*
+#         4) account = Match account names.  *Must be account names only*
+#         5) configured = Must be set to company specific information.  *Cannot be blank or default*
+
+
+
+win_secedit:
+  whitelist:
+    password_history_size:
+      data:
+        'Microsoft Windows Server 2012*':
+          - 'PasswordHistorySize':
+              tag: CIS-1.1.1
+              match_output: '23'
+              value_type: 'more'
+      description: (l1) ensure 'enforce password history' is set to '24 or more password(s)'
+    maximum_password_age:
+      data:
+        'Microsoft Windows Server 2012*':
+          - 'MaximumPasswordAge':
+              tag: CIS-1.1.2
+              match_output: '61'
+              value_type: 'less'
+      description: (l1) ensure 'maximum password age' is set to '60 or fewer days, but not 0'
