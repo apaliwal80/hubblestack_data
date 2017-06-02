@@ -1,4 +1,4 @@
-C:\temp: {}
+C:\temp2: {}
 win_notify_interval: 30 # MUST be the same as interval in pillar config
 return: splunk_pulsar_return
 batch: True
