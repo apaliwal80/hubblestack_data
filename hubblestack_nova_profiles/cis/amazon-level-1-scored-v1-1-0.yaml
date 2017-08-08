@@ -1,0 +1,74 @@
+# NOTE: This CIS Profile only includes Level 1 Scored Items for Amazon Linux*.
+# NOTE: Within this file, there are a few sections that should be tailored to your
+#       organization's specific policy.  Search for '# NOTE: ' comments through the file.
+
+pkg:
+  blacklist:
+
+    telnet:
+      data:
+        'Amazon Linux*':
+          - 'telnet-server': 'CIS-2.1.1'
+          - 'telnet': 'CIS-2.1.2'
+      description: 'Remove telnet and telnet-server'
+
+   
+  whitelist:
+
+    rsyslog:
+      data:
+        'Amazon Linux*':
+          'rsyslog': 'CIS-5.1.1'
+      description: 'Install rsyslog'
+
+    anacron:
+      data:
+        'Amazon Linux*':
+          'cronie-anacron': 'CIS-6.1.1'
+      description: 'Enable anacron Daemon'
+
+
+
+stat:
+  grub_conf_own:
+    data:
+      'Amazon Linux*':
+        - '/etc/grub.conf':
+            tag: 'CIS-1.5.1'
+            user: 'root'
+            uid: 0
+            group: 'root'
+            gid: 0
+    description: 'Grub must be owned by root'
+
+  grub_conf_perm:
+    data:
+      'Amazon Linux*':
+        - '/etc/grub.conf':
+            tag: 'CIS-1.5.2'
+            mode: 600
+    description: 'Grub must have permissions 600'
+
+ 
+grep:
+  whitelist:
+
+    fstab_tmp_partition:
+      data:
+        Amazon Linux*:
+          - '/etc/fstab':
+              tag: 'CIS-1.1.1'
+              pattern: '/tmp'
+      description: 'Create Separate Partition for /tmp (Scored)'
+
+    fstab_tmp_partition_nodev:
+      data:
+        Amazon Linux*:
+          - '/etc/fstab':
+              tag: 'CIS-1.1.2'
+              pattern: '/tmp'
+              match_output: 'nodev'
+      description: 'Set nodev option for /tmp Partition (Scored)'
+
+
+  
